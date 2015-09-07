@@ -1,0 +1,18 @@
+{{#each model.genders as |gender|}}
+  {{#radio-button value=gender.id groupValue=model.user.gender}}
+    {{ gender.label }}
+  {{/radio-button}}
+{{/each}}
+
+{{view "select"
+       content=model.relationships
+       optionValuePath="content.id"
+       optionLabelPath="content.label"
+       value=model.user.relationship}}
+
+
+<div class="occasions">
+  {{#each model.occasions as |occasion|}}
+    <a href="#">{{ occasion.label }}</a>
+  {{/each}}
+</div>

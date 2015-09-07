@@ -6,6 +6,10 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('contacts', function() {
+    this.route('new');
+  });
+  this.route('occasions');
 });
 
 export default Router;

@@ -3,6 +3,7 @@
 module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'fido',
+    podModulePrefix: 'fido/pods',
     environment: environment,
     baseURL: '/',
     locationType: 'auto',
