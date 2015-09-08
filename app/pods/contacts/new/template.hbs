@@ -1,5 +1,8 @@
+<p>{{input value=model.contact.firstName placeholder="First Name"}}</p>
+<p>{{input value=model.contact.lastName placeholder="Last Name"}}</p>
+
 {{#each model.genders as |gender|}}
-  {{#radio-button value=gender.id groupValue=model.user.gender}}
+  {{#radio-button value=gender.id groupValue=model.contact.gender}}
     {{ gender.label }}
   {{/radio-button}}
 {{/each}}
@@ -8,18 +11,19 @@
        content=model.relationships
        optionValuePath="content.id"
        optionLabelPath="content.label"
-       value=model.user.relationship}}
+       value=model.contact.relationship}}
 
 <div class="occasions">
-  <ul class="list">
+  <div class="occasion">
     {{#each model.occasions as |occasion|}}
-      <li>{{ occasion.label }}</li>
+      <h2>{{ occasion.label }}</h2>
+      <p>{{input type="date" value=occasion.date}}</p>
     {{/each}}
-  </ul>
+  </div>
 
   <div class="presets">
     {{#each model.occasionPresets as |occasion|}}
-      <a href="#" {{action 'selectOccasion' occasion}}>{{ occasion.label }}</a>
+      {{preset-occasion collection=model.occasions preset=occasion onSelect='selectOccasion'}}
     {{/each}}
   </div>
 </div>

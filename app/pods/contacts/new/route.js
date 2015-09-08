@@ -6,9 +6,11 @@ export default Ember.Route.extend({
   occasionPresets: Ember.inject.service( 'occasions' ),
 
   model() {
+    let contactModel = this.store.createRecord( 'contact' );
+
     return Ember.RSVP.hash({
-      user           : this.store.createRecord( 'contact' ),
-      occasions      : this.store.all( 'occasion' ),
+      contact        : contactModel,
+      occasions      : contactModel.get( 'occasions' ),
       genders        : this.get( 'genders.list' ),
       relationships  : this.get( 'relationships.list' ),
       occasionPresets: this.get( 'occasionPresets.list' )
@@ -18,7 +20,8 @@ export default Ember.Route.extend({
   actions: {
     selectOccasion(occasion) {
       let model = this.store.createRecord( 'occasion', occasion );
-      this.store.push( 'occasion', model );
+      model.set( 'contact', this.controller.model.contact );
+      this.store.pushPayload( 'occasion', this.store.normalize('occasion', model) );
     }
   }
 });
