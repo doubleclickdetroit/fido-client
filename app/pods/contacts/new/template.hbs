@@ -10,9 +10,16 @@
        optionLabelPath="content.label"
        value=model.user.relationship}}
 
-
 <div class="occasions">
-  {{#each model.occasions as |occasion|}}
-    <a href="#">{{ occasion.label }}</a>
-  {{/each}}
+  <ul class="list">
+    {{#each model.occasions as |occasion|}}
+      <li>{{ occasion.label }}</li>
+    {{/each}}
+  </ul>
+
+  <div class="presets">
+    {{#each model.occasionPresets as |occasion|}}
+      <a href="#" {{action 'selectOccasion' occasion}}>{{ occasion.label }}</a>
+    {{/each}}
+  </div>
 </div>
