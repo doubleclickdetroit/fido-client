@@ -16,14 +16,19 @@
 <div class="occasions">
   <div class="occasion">
     {{#each model.occasions as |occasion|}}
-      <h2>{{ occasion.label }}</h2>
-      <p>{{input type="date" value=occasion.date}}</p>
+      {{#if occasion.isSelected}}
+        <a href="#" {{action 'closeOccasion' occasion}}>x</a>
+        <h2>{{ occasion.label }}</h2>
+        <p>{{input type="date" value=occasion.date}}</p>
+      {{/if}}
     {{/each}}
   </div>
 
   <div class="presets">
-    {{#each model.occasionPresets as |occasion|}}
-      {{preset-occasion collection=model.occasions preset=occasion onSelect='selectOccasion'}}
+    {{#each model.occasions as |occasion|}}
+      {{#unless occasion.isSelected}}
+        <a href="#" {{action 'selectOccasion' occasion}}>{{ occasion.label }}</a>
+      {{/unless}}
     {{/each}}
   </div>
 </div>

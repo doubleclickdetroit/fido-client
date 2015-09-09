@@ -8,9 +8,9 @@ export default Ember.Service.extend({
   },
 
   list: [
-    { label: 'Birthday',       date: null },
-    { label: 'Anniversary',    date: null },
-    { label: 'Sweetest Day',   date: '2015-10-17' },
-    { label: 'Valentines Day', date: '2016-02-14' },
+    Ember.Object.create({ label: 'Birthday',       date: null }),
+    Ember.Object.create({ label: 'Anniversary',    date: null }),
+    Ember.Object.create({ label: 'Sweetest Day',   date: '2015-10-17' }),
+    Ember.Object.create({ label: 'Valentines Day', date: '2016-02-14' }),
   ]
 });

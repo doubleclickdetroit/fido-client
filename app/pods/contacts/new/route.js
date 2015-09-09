@@ -1,27 +1,32 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-  genders        : Ember.inject.service( 'genders' ),
-  relationships  : Ember.inject.service( 'relationships' ),
-  occasionPresets: Ember.inject.service( 'occasions' ),
+  genders      : Ember.inject.service( 'genders' ),
+  relationships: Ember.inject.service( 'relationships' ),
+  occasions    : Ember.inject.service( 'occasions' ),
 
   model() {
-    let contactModel = this.store.createRecord( 'contact' );
-
     return Ember.RSVP.hash({
-      contact        : contactModel,
-      occasions      : contactModel.get( 'occasions' ),
-      genders        : this.get( 'genders.list' ),
-      relationships  : this.get( 'relationships.list' ),
-      occasionPresets: this.get( 'occasionPresets.list' )
+      contact      : this.store.createRecord( 'contact' ),
+      genders      : this.get( 'genders.list' ),
+      relationships: this.get( 'relationships.list' ),
+      occasions    : this.get( 'occasions.list' ).slice(0)
     });
   },
 
   actions: {
     selectOccasion(occasion) {
-      let model = this.store.createRecord( 'occasion', occasion );
-      model.set( 'contact', this.controller.model.contact );
-      this.store.pushPayload( 'occasion', this.store.normalize('occasion', model) );
+      occasion.setProperties({
+        isSelected: true,
+        contact: this.controller.model.contact
+      });
+    },
+
+    closeOccasion(occasion) {
+      occasion.setProperties({
+        isSelected: false,
+        contact: null
+      });
     }
   }
 });
