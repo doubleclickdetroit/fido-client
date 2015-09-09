@@ -40,6 +40,11 @@ export default Ember.Route.extend({
 
     closeOccasion(occasion) {
       occasion.set( 'isSelected', false );
+    },
+
+    saveContact() {
+      let contact = this.controller.model.contact;
+      contact.save();
     }
   }
 });
