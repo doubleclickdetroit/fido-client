@@ -5,28 +5,41 @@ export default Ember.Route.extend({
   relationships: Ember.inject.service( 'relationships' ),
   occasions    : Ember.inject.service( 'occasions' ),
 
+  deactivate() {
+    let contact = this.controller.model.contact;
+
+    if ( contact.get('isNew') ) {
+      contact.get( 'occasions' ).toArray().invoke( 'unloadRecord' );
+      contact.unloadRecord();
+    }
+  },
+
   model() {
+    let contact   = this.store.createRecord( 'contact' );
+    let occasions = contact.get( 'occasions' );
+
+    this.get( 'occasions.list' ).forEach(function(occasion) {
+      if ( !occasions.findBy('label', occasion.label) ) {
+        occasion.contact = contact;
+        this.store.createRecord( 'occasion', occasion );
+      }
+    }, this);
+
     return Ember.RSVP.hash({
-      contact      : this.store.createRecord( 'contact' ),
+      contact      : contact,
+      occasions    : occasions,
       genders      : this.get( 'genders.list' ),
-      relationships: this.get( 'relationships.list' ),
-      occasions    : this.get( 'occasions.list' ).slice(0)
+      relationships: this.get( 'relationships.list' )
     });
   },
 
   actions: {
     selectOccasion(occasion) {
-      occasion.setProperties({
-        isSelected: true,
-        contact: this.controller.model.contact
-      });
+      occasion.set( 'isSelected', true );
     },
 
     closeOccasion(occasion) {
-      occasion.setProperties({
-        isSelected: false,
-        contact: null
-      });
+      occasion.set( 'isSelected', false );
     }
   }
 });
