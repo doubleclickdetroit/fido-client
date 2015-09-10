@@ -1,8 +1,8 @@
-<p>{{input value=model.contact.firstName placeholder="First Name"}}</p>
-<p>{{input value=model.contact.lastName placeholder="Last Name"}}</p>
+<p>{{input value=contact.firstName placeholder="First Name"}}</p>
+<p>{{input value=contact.lastName placeholder="Last Name"}}</p>
 
 {{#each model.genders as |gender|}}
-  {{#radio-button value=gender.id groupValue=model.contact.gender}}
+  {{#radio-button value=gender.id groupValue=contact.gender}}
     {{ gender.label }}
   {{/radio-button}}
 {{/each}}
@@ -11,7 +11,7 @@
        content=model.relationships
        optionValuePath="content.id"
        optionLabelPath="content.label"
-       value=model.contact.relationship}}
+       value=contact.relationship}}
 
 <div class="occasions">
   <div class="occasion">
@@ -33,5 +33,4 @@
   </div>
 </div>
 
-
-<button {{action 'saveContact'}}>Create</button>
+<button {{action 'saveContact'}} disabled={{ isInvalid }}>Create</button>
