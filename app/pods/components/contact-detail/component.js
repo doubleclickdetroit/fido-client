@@ -19,7 +19,7 @@ export default Ember.Component.extend({
   actions: {
     saveContact() {
       let contact = this.get( 'contact' );
-      contact.save();
+      this.attrs.onSave( contact );
       this.setIsEditable( false );
     },
 

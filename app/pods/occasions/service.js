@@ -14,15 +14,15 @@ export default Ember.Service.extend({
     { label: 'Valentines Day', date: '2016-02-14' },
   ],
 
-  getPresets(occasionsCollection) {
-    let occasions = [];
+  addPresets(occasions=[]) {
+    let occasionsCollection = occasions.slice(0);
 
     this.get( 'list' ).forEach(function(occasion) {
       if ( !occasionsCollection.findBy('label', occasion.label) ) {
-        occasions.pushObject( occasion );
+        occasionsCollection.pushObject( Ember.Object.create(occasion) );
       }
-    }, this);
+    });
 
-    return occasions;
+    return occasionsCollection;
   }
 });

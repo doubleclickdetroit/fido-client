@@ -1,5 +1,5 @@
 <div class="occasions">
-  {{#each occasions as |occasion|}}
+  {{#each occasionPresets as |occasion|}}
     <div class="occasion">
       {{#if occasion.isSelected}}
         <a href="#" {{action 'closeOccasion' occasion}}>x</a>
@@ -10,7 +10,7 @@
   {{/each}}
 
   <div class="presets">
-    {{#each occasions as |occasion|}}
+    {{#each occasionPresets as |occasion|}}
       {{#unless occasion.isSelected}}
         <a href="#" {{action 'selectOccasion' occasion}}>{{ occasion.label }}</a>
       {{/unless}}
