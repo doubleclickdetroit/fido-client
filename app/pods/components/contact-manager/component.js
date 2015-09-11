@@ -16,7 +16,7 @@ export default Ember.Component.extend({
       let store   = this.get( 'store' );
       let contact = this.get( 'contact' );
 
-      occasions.forEach(function(occasion) {
+      occasions.filterBy('id', undefined).forEach(function(occasion) {
         let data = occasion.getProperties( 'label', 'date' );
         data.contact = contact;
         store.createRecord( 'occasion', data );
@@ -28,7 +28,7 @@ export default Ember.Component.extend({
     },
 
     deleteOccasion(occasion) {
-      occasion.destroy();
+      occasion.destroyRecord();
       this.sendAction( 'onDeleteOccasion', occasion );
     }
   }

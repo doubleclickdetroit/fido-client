@@ -4,5 +4,5 @@ export default DS.Model.extend({
   contact: DS.belongsTo( 'contact' ),
 
   label: DS.attr( 'string' ),
-  date : DS.attr( 'date' )
+  date : DS.attr( 'isodate' )
 });

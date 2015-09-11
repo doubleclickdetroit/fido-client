@@ -2,7 +2,7 @@ import DS from 'ember-data';
 import EmberValidations from 'ember-validations';
 
 export default DS.Model.extend(EmberValidations.Mixin, {
-  occasions: DS.hasMany( 'occasion' ),
+  occasions: DS.hasMany( 'occasion', { async: true } ),
 
   firstName   : DS.attr(),
   lastName    : DS.attr(),

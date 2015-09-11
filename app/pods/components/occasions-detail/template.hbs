@@ -1,16 +1,16 @@
 <div class="occasions">
-  {{#each occasionPresets as |occasion|}}
+  {{#each occasionCollection as |occasion|}}
     <div class="occasion">
       {{#if occasion.isSelected}}
         <a href="#" {{action 'closeOccasion' occasion}}>x</a>
         <h2>{{ occasion.label }}</h2>
-        <p>{{input type="date" value=occasion.date}}</p>
+        <p>{{input type="date" value=occasion.date}} - {{moment-from-now occasion.date}}</p>
       {{/if}}
     </div>
   {{/each}}
 
   <div class="presets">
-    {{#each occasionPresets as |occasion|}}
+    {{#each occasionCollection as |occasion|}}
       {{#unless occasion.isSelected}}
         <a href="#" {{action 'selectOccasion' occasion}}>{{ occasion.label }}</a>
       {{/unless}}
