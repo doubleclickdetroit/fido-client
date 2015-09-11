@@ -4,6 +4,8 @@ export default Ember.Component.extend({
   occasionPresets: Ember.inject.service( 'occasions' ),
 
   occasions: [],
+  selectedOccasions       : Ember.computed.filterProperty( 'occasionPresets', 'isSelected', true ),
+  withoutSelectedOccasions: Ember.computed.equal( 'selectedOccasions.length', 0 ),
 
   init() {
     let occasions       = this.get( 'occasions' );
@@ -23,7 +25,7 @@ export default Ember.Component.extend({
     },
 
     saveOccasions() {
-      let occasions = this.get('occasionPresets').filterProperty( 'isSelected', true );
+      let occasions = this.get( 'selectedOccasions' );
       this.attrs.onSave( occasions );
     }
   }
