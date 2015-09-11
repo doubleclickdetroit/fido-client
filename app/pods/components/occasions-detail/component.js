@@ -1,8 +1,9 @@
 import Ember from 'ember';
 
 export default Ember.Component.extend({
-  occasions: [],
   occasionPresets: Ember.inject.service( 'occasions' ),
+
+  occasions: [],
 
   init() {
     let occasions       = this.get( 'occasions' );
@@ -19,6 +20,11 @@ export default Ember.Component.extend({
 
     closeOccasion(occasion) {
       occasion.set( 'isSelected', false );
+    },
+
+    saveOccasions() {
+      let occasions = this.get('occasionPresets').filterProperty( 'isSelected', true );
+      this.attrs.onSave( occasions );
     }
   }
 });

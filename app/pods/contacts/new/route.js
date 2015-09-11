@@ -15,6 +15,12 @@ export default Ember.Route.extend({
   actions: {
     saveContact(contact) {
       contact.save();
+    },
+
+    saveOccasions(occasions) {
+      occasions.forEach(function(occasion) {
+        occasion.save();
+      });
     }
   }
 });
