@@ -19,6 +19,7 @@
     <button {{action 'saveContact'}} disabled={{ contact.isInvalid }}>
       {{#if contact.id}}Update{{else}}Create{{/if}}
     </button>
+    <button {{action 'cancelEditing'}}>Cancel</button>
   </div>
 
 {{else}}

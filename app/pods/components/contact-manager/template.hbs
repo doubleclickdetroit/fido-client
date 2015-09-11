@@ -1,5 +1,5 @@
 {{contact-detail contact=contact onSave=(action 'saveContact')}}
 
 {{#if contact.id}}
-  {{occasions-detail occasions=occasions onSave=(action 'saveOccasions')}}
+  {{occasions-detail occasions=occasions onSave=(action 'saveOccasions') onDelete=(action 'deleteOccasion')}}
 {{/if}}

@@ -22,6 +22,9 @@ export default Ember.Component.extend({
 
     closeOccasion(occasion) {
       occasion.set( 'isSelected', false );
+      if ( occasion.get('id') ) {
+        this.attrs.onDelete( occasion );
+      }
     },
 
     saveOccasions() {

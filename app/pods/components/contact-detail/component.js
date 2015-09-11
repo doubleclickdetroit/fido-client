@@ -25,6 +25,10 @@ export default Ember.Component.extend({
 
     editContact() {
       this.setIsEditable( true );
+    },
+
+    cancelEditing() {
+      this.setIsEditable( false );
     }
   }
 });

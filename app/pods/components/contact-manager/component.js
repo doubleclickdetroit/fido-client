@@ -7,7 +7,9 @@ export default Ember.Component.extend({
 
   actions: {
     saveContact(contact) {
-      this.sendAction( 'onSaveContact', contact );
+      contact.save().then(function() {
+        this.sendAction( 'onSaveContact', contact );
+      }.bind(this));
     },
 
     saveOccasions(occasions) {
@@ -21,7 +23,13 @@ export default Ember.Component.extend({
       });
 
       let collection = contact.get( 'occasions' );
+      collection.invoke( 'save' );
       this.sendAction( 'onSaveOccasions', collection );
+    },
+
+    deleteOccasion(occasion) {
+      occasion.destroy();
+      this.sendAction( 'onDeleteOccasion', occasion );
     }
   }
 });

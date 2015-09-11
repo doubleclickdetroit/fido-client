@@ -13,14 +13,16 @@ export default Ember.Route.extend({
   },
 
   actions: {
-    saveContact(contact) {
-      contact.save();
+    saveContact() {
+      console.log( 'saveContact called' );
     },
 
-    saveOccasions(occasions) {
-      occasions.forEach(function(occasion) {
-        occasion.save();
-      });
+    saveOccasions() {
+      console.log( 'saveOccasions called' );
+    },
+
+    deleteOccasion() {
+      console.log( 'deleteOccasion called' );
     }
   }
 });

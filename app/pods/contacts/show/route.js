@@ -7,5 +7,19 @@ export default Ember.Route.extend({
     return Ember.RSVP.hash({
       contact  : contact,
     });
+  },
+
+  actions: {
+    saveContact() {
+      console.log( 'saveContact called' );
+    },
+
+    saveOccasions() {
+      console.log( 'saveOccasions called' );
+    },
+
+    deleteOccasion() {
+      console.log( 'deleteOccasion called' );
+    }
   }
 });
