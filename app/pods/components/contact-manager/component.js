@@ -17,7 +17,7 @@ export default Ember.Component.extend({
       let contact = this.get( 'contact' );
 
       occasions.filterBy('id', undefined).forEach(function(occasion) {
-        let data = occasion.getProperties( 'label', 'date' );
+        let data = occasion.getProperties( 'label', 'date', 'isSelected' );
         data.contact = contact;
         store.createRecord( 'occasion', data );
       });

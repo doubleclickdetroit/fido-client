@@ -2,7 +2,11 @@
   {{#each occasionCollection as |occasion|}}
     <div class="occasion">
       {{#if occasion.isSelected}}
-        <a href="#" {{action 'closeOccasion' occasion}}>x</a>
+        {{#if occasion.id}}
+          <a href="#" {{action 'deleteOccasion' occasion}}>x</a>
+        {{else}}
+          <a href="#" {{action 'closeOccasion' occasion}}>close</a>
+        {{/if}}
         <h2>{{ occasion.label }}</h2>
         <p>{{input type="date" value=occasion.date}} - {{moment-from-now occasion.date}}</p>
       {{/if}}
@@ -12,7 +16,7 @@
   <div class="presets">
     {{#each occasionCollection as |occasion|}}
       {{#unless occasion.isSelected}}
-        <a href="#" {{action 'selectOccasion' occasion}}>{{ occasion.label }}</a>
+        <a href="#" {{action 'openOccasion' occasion}}>{{ occasion.label }}</a>
       {{/unless}}
     {{/each}}
   </div>

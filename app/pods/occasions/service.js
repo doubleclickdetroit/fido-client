@@ -14,7 +14,7 @@ export default Ember.Service.extend({
     { label: 'Valentines Day', date: '2016-02-14' },
   ],
 
-  addPresets(occasions=[]) {
+  insertPresets(occasions=[]) {
     let occasionsCollection = occasions.slice(0);
 
     this.get( 'list' ).forEach(function(occasion) {

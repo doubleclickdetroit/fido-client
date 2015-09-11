@@ -19,7 +19,7 @@ export default Ember.Component.extend({
 
   updateOccasionCollection() {
     let occasions       = this.get( 'occasions' );
-    let occasionPresets = this.get( 'occasionPresets' ).addPresets( occasions );
+    let occasionPresets = this.get( 'occasionPresets' ).insertPresets( occasions );
     this.set( 'occasionCollection', occasionPresets );
   },
 
@@ -31,12 +31,17 @@ export default Ember.Component.extend({
   },
 
   actions: {
-    selectOccasion(occasion) {
+    openOccasion(occasion) {
       occasion.set( 'isSelected', true );
     },
 
     closeOccasion(occasion) {
       occasion.set( 'isSelected', false );
+    },
+
+    deleteOccasion(occasion) {
+      this.send( 'closeOccasion', occasion );
+
       if ( occasion.get('id') ) {
         this.attrs.onDelete( occasion );
       }
