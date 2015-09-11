@@ -1,1 +1,22 @@
-<p>index, yo</p>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Occasions</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    {{#each model as |contact|}}
+    <tr>
+      <td>{{ contact.fullName }}</td>
+      <td>{{ contact.occasions.length }}</td>
+      <td>
+        {{link-to 'view' 'contacts.show' contact.id}} |
+        <a href="#" {{action 'destroyContact' contact}}>delete</a>
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>

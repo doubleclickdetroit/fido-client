@@ -1,9 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-  genders      : Ember.inject.service( 'genders' ),
-  relationships: Ember.inject.service( 'relationships' ),
-  occasions    : Ember.inject.service( 'occasions' ),
+  occasions: Ember.inject.service( 'occasions' ),
 
   deactivate() {
     let contact = this.controller.model.contact;
@@ -26,25 +24,8 @@ export default Ember.Route.extend({
     }, this);
 
     return Ember.RSVP.hash({
-      contact      : contact,
-      occasions    : occasions,
-      genders      : this.get( 'genders.list' ),
-      relationships: this.get( 'relationships.list' )
+      contact  : contact,
+      occasions: occasions,
     });
-  },
-
-  actions: {
-    selectOccasion(occasion) {
-      occasion.set( 'isSelected', true );
-    },
-
-    closeOccasion(occasion) {
-      occasion.set( 'isSelected', false );
-    },
-
-    saveContact() {
-      let contact = this.controller.model.contact;
-      contact.save();
-    }
   }
 });

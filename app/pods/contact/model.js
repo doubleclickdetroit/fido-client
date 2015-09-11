@@ -9,6 +9,10 @@ export default DS.Model.extend(EmberValidations.Mixin, {
   gender      : DS.attr( 'number', { defaultValue: 1 } ),
   relationship: DS.attr( 'number', { defaultValue: 1 } ),
 
+  fullName: Ember.computed('firstName', 'lastName', function() {
+    return this.get( 'firstName' ) +' '+ this.get( 'lastName' );
+  }),
+
   validations: {
     firstName: {
       presence: true,

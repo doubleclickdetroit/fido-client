@@ -1,0 +1,33 @@
+{{#if isEditable}}
+
+  <p>{{input value=contact.firstName placeholder="First Name"}}</p>
+  <p>{{input value=contact.lastName placeholder="Last Name"}}</p>
+
+  {{#each genders as |gender|}}
+    {{#radio-button value=gender.id groupValue=contact.gender}}
+      {{ gender.label }}
+    {{/radio-button}}
+  {{/each}}
+
+  {{view "select"
+         content=relationships
+         optionValuePath="content.id"
+         optionLabelPath="content.label"
+         value=contact.relationship}}
+
+  <div>
+    <button {{action 'saveContact'}} disabled={{ contact.isInvalid }}>
+      {{#if contact.id}}Update{{else}}Create{{/if}}
+    </button>
+  </div>
+
+{{else}}
+
+  <p>{{ contact.firstName }}</p>
+  <p>{{ contact.lastName }}</p>
+
+  <div>
+    <button {{action 'editContact'}}>Edit</button>
+  </div>
+
+{{/if}}

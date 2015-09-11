@@ -12,5 +12,17 @@ export default Ember.Service.extend({
     { label: 'Anniversary',    date: null },
     { label: 'Sweetest Day',   date: '2015-10-17' },
     { label: 'Valentines Day', date: '2016-02-14' },
-  ]
+  ],
+
+  getPresets(occasionsCollection) {
+    let occasions = [];
+
+    this.get( 'list' ).forEach(function(occasion) {
+      if ( !occasionsCollection.findBy('label', occasion.label) ) {
+        occasions.pushObject( occasion );
+      }
+    }, this);
+
+    return occasions;
+  }
 });
