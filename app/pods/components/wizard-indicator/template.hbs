@@ -1,0 +1,11 @@
+{{#each steps as |step|}}
+<span>{{ step.step }}</span>&nbsp;
+{{/each}}
+
+{{#if showPrev}}
+  <button {{action 'prev'}}>Previous</button>
+{{/if}}
+
+{{#if showNext}}
+  <button {{action 'next'}}>Next</button>
+{{/if}}
