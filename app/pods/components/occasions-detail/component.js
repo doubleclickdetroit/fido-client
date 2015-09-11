@@ -8,21 +8,26 @@ export default Ember.Component.extend({
   withoutSelectedOccasions: Ember.computed.equal( 'selectedOccasions.length', 0 ),
 
   init() {
-    let occasions       = this.get( 'occasions' );
-    let occasionPresets = this.get( 'occasionPresets' ).addPresets( occasions );
-
+    let occasions = this.get( 'occasions' );
     occasions.addArrayObserver( this );
 
-    this.set( 'occasionCollection', occasionPresets );
+    // initially set occasionCollection
+    this.updateOccasionCollection();
+
     this._super.apply( this, arguments );
   },
 
-  arrayWillChange: function(array, start, removeCount, addCount) {
-  },
-  arrayDidChange: function(array, start, removeCount, addCount) {
+  updateOccasionCollection() {
     let occasions       = this.get( 'occasions' );
     let occasionPresets = this.get( 'occasionPresets' ).addPresets( occasions );
     this.set( 'occasionCollection', occasionPresets );
+  },
+
+  arrayWillChange() {
+    // required, otherwise Ember throws an error
+  },
+  arrayDidChange() {
+    this.updateOccasionCollection();
   },
 
   actions: {
