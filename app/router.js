@@ -10,7 +10,12 @@ Router.map(function() {
     this.route('new');
     this.route('show', { path: '/:contact_id' });
   });
-  this.route('occasions');
+
+  this.route('signup', function() {
+    this.route('membership');
+    this.route('payment');
+    this.route('overview');
+  });
 });
 
 export default Router;
