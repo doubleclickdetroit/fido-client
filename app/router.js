@@ -16,6 +16,7 @@ Router.map(function() {
     this.route('payment');
     this.route('overview');
   });
+  this.route('login');
 });
 
 export default Router;
