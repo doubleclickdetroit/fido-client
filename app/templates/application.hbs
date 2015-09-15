@@ -4,7 +4,7 @@
   {{#if session.isAuthenticated}}
     <a href="#" {{action 'invalidateSession'}}>Logout</a>
   {{else}}
-    {{#link-to 'login'}}Login{{/link-to}}
+    {{link-to 'Login' 'login'}} | {{link-to 'Singup' 'signup'}}
   {{/if}}
 </nav>
 

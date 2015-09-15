@@ -1,1 +1,3 @@
-{{link-to 'Create Contact' 'contacts.new'}}
+{{#if session.isAuthenticated}}
+  <p>Contacts: {{link-to 'All' 'contacts'}} {{link-to 'Create' 'contacts.new'}}</p>
+{{/if}}
