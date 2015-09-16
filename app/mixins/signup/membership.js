@@ -5,22 +5,9 @@ export default Ember.Mixin.create(LoginControllerMixin, {
   identification: Ember.computed.alias( 'email' ),
 
   actions: {
-    onRegister: function() {
-      this.set( 'errors', null );
-    },
-    onSuccess: function() {
-      this.set( 'errors', null );
-    },
-    onFailure: function(errors) {
-      var errorHash = Ember.Object.create( errors );
-      this.set( 'errors', errorHash );
-    },
-
     register: function() {
       var request, credentialsHash;
       credentialsHash = this.getProperties( 'email', 'password', 'password_confirmation' );
-
-      this.send( 'onRegister' );
 
       request = Ember.$.ajax({
         method  : 'POST',
@@ -38,8 +25,10 @@ export default Ember.Mixin.create(LoginControllerMixin, {
       function handleSuccess(response) {
         Ember.run(function() {
           this.send( 'authenticate' );
-          this.set( 'password_confirmation', null );
-          this.send( 'onSuccess', response );
+          this.setProperties({
+            password: null,
+            password_confirmation: null
+          });
         }.bind( this ));
       }
 
@@ -47,7 +36,6 @@ export default Ember.Mixin.create(LoginControllerMixin, {
         Ember.run(function() {
           var responseHash = JSON.parse( xhr.responseText ),
               errorHash    = responseHash[ 'errors' ];
-          this.send( 'onFailure', errorHash );
         }.bind( this ));
       }
 

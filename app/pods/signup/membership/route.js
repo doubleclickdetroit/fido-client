@@ -1,6 +1,7 @@
 import Ember from 'ember';
+import WizardStepDataMixin from '../../../mixins/wizard-step-data';
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(WizardStepDataMixin, {
   actions: {
     sessionAuthenticationSucceeded() {
       // prevent ember-simple-auth config.routeAfterAuthentication redirecting to 'index'

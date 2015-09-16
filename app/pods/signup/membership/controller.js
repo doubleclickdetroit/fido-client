@@ -4,10 +4,8 @@ import RegistrationControllerMixin from '../../../mixins/signup/membership';
 export default Ember.Controller.extend(RegistrationControllerMixin, {
   authenticator: 'simple-auth-authenticator:devise',
 
-  errorsCollection: function() {
-    var errors = this.get( 'errors' );
-    return errors.map(function(key, val) {
-      return { field: key, messages: val };
-    });
-  }.property( 'errors' )
+  isAuthenticatedDidChange: Ember.observer('session.isAuthenticated', 'wizardStep.showNext', function() {
+    let isAuthenticated = this.get( 'session.isAuthenticated' );
+    this.set( 'wizardStep.showNext', isAuthenticated );
+  })
 });
