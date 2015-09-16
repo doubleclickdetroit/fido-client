@@ -8,7 +8,8 @@ export default Ember.Route.extend({
   },
 
   afterModel(model, transition) {
-    this.transitionTo( 'signup.membership' );
+    let isAuthenticated = this.session.get( 'isAuthenticated' );
+    this.transitionTo( isAuthenticated ? 'index' : 'signup.membership' );
   },
 
   actions: {
