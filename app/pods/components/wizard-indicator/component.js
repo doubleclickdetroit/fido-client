@@ -17,6 +17,8 @@ export default Ember.Component.extend({
   prevTransition: Ember.computed.alias( 'activeStep.prevTransition' ),
   showNext      : Ember.computed.alias( 'activeStep.showNext' ),
   showPrev      : Ember.computed.alias( 'activeStep.showPrev' ),
+  disableNext   : Ember.computed.alias( 'activeStep.disableNext' ),
+  disablePrev   : Ember.computed.alias( 'activeStep.disablePrev' ),
 
   actions: {
     prev() {

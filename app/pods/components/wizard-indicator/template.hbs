@@ -3,9 +3,9 @@
 {{/each}}
 
 {{#if showPrev}}
-  <button {{action 'prev'}}>Previous</button>
+  <button {{action 'prev'}} disabled={{disablePrev}}>Previous</button>
 {{/if}}
 
 {{#if showNext}}
-  <button {{action 'next'}}>Next</button>
+  <button {{action 'next'}} disabled={{disableNext}}>Next</button>
 {{/if}}
