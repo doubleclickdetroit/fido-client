@@ -6,7 +6,7 @@ export default Ember.Service.extend({
       route: 'signup.membership',
       step: 'Membership',
       next: 'Payment',
-      nextTransition: 'signup.payment',
+      nextTransition: 'signup.contacts',
       prevTransition: 'signup.index',
       showNext: true,
       showPrev: false

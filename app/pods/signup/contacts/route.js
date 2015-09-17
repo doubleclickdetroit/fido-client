@@ -1,8 +1,16 @@
 import Ember from 'ember';
+import WizardStepDataMixin from '../../../mixins/wizard-step-data';
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(WizardStepDataMixin, {
   model() {
     return this.store.createRecord( 'contact' );
+  },
+
+  setupController(controller, model) {
+    this._super.apply( this, arguments );
+
+    let contacts = this.store.peekAll( 'contact' );
+    controller.set( 'contacts', contacts );
   },
 
   renderTemplate() {
@@ -17,13 +25,13 @@ export default Ember.Route.extend({
       }
     },
 
-    saveContact() {
-      //
-    },
-
     saveOccasions() {
       let contact = this.store.createRecord( 'contact' );
       this.set( 'controller.model', contact );
+    },
+
+    saveContact() {
+      //
     },
 
     deleteOccasion() {
