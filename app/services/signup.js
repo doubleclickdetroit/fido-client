@@ -13,11 +13,21 @@ export default Ember.Service.extend({
     }),
 
     Ember.Object.create({
+      route: 'signup.contacts',
+      step: 'Contacts',
+      next: 'Payment',
+      nextTransition: 'signup.payment',
+      prevTransition: 'signup.membership',
+      showNext: true,
+      showPrev: true
+    }),
+
+    Ember.Object.create({
       route: 'signup.payment',
       step: 'Payment',
       next: 'Overview',
       nextTransition: 'signup.overview',
-      prevTransition: 'signup.membership',
+      prevTransition: 'signup.contacts',
       showNext: true,
       showPrev: true
     }),

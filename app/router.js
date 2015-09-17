@@ -15,6 +15,7 @@ Router.map(function() {
     this.route('membership');
     this.route('payment');
     this.route('overview');
+    this.route('contacts');
   });
 
   this.route('login');

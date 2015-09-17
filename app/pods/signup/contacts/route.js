@@ -5,6 +5,10 @@ export default Ember.Route.extend({
     return this.store.createRecord( 'contact' );
   },
 
+  renderTemplate() {
+    this.render( 'contacts.new' );
+  },
+
   actions: {
     willTransition() {
       let contact = this.controller.model;
@@ -12,16 +16,17 @@ export default Ember.Route.extend({
         contact.unloadRecord();
       }
     },
+
     saveContact() {
-      console.log( 'saveContact called' );
+      //
     },
 
     saveOccasions() {
-      console.log( 'saveOccasions called' );
+      //
     },
 
     deleteOccasion() {
-      console.log( 'deleteOccasion called' );
+      //
     }
   }
 });
