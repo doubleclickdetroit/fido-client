@@ -22,7 +22,8 @@ export default Ember.Route.extend({
     },
 
     saveOccasions() {
-      //
+      let contact = this.store.createRecord( 'contact' );
+      this.set( 'controller.model', contact );
     },
 
     deleteOccasion() {
