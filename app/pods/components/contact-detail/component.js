@@ -11,10 +11,10 @@ export default Ember.Component.extend({
     this.set( 'isEditable', isEditable );
   },
 
-  initIsEditable: Ember.on('init', function() {
+  contactDidChange: function() {
     let id = this.get( 'contact.id' );
     this.setIsEditable( !id );
-  }),
+  }.on( 'init' ).observes( 'contact.isNew' ),
 
   actions: {
     saveContact() {
