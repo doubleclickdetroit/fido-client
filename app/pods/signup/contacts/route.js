@@ -1,7 +1,7 @@
 import Ember from 'ember';
-import WizardStepDataMixin from '../../../mixins/wizard-step-data';
+import WizardStepSignupMixin from '../../../mixins/wizard-steps-signup';
 
-export default Ember.Route.extend(WizardStepDataMixin, {
+export default Ember.Route.extend(WizardStepSignupMixin, {
   model() {
     return this.store.createRecord( 'contact' );
   },
