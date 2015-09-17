@@ -3,15 +3,15 @@ import Ember from 'ember';
 export default Ember.Route.extend({
   actions: {
     saveContact() {
-      console.log( 'saveContact called' );
+      //
     },
 
     saveOccasions() {
-      console.log( 'saveOccasions called' );
+      this.transitionTo( 'contacts.index' );
     },
 
     deleteOccasion() {
-      console.log( 'deleteOccasion called' );
+      //
     }
   }
 });
