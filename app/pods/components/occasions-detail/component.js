@@ -9,26 +9,14 @@ export default Ember.Component.extend({
 
   init() {
     let occasions = this.get( 'occasions' );
-    occasions.addArrayObserver( this );
-
-    // initially set occasionCollection
-    this.updateOccasionCollection();
-
     this._super.apply( this, arguments );
   },
 
-  updateOccasionCollection() {
+  updateOccasionCollection: function() {
     let occasions       = this.get( 'occasions' );
     let occasionPresets = this.get( 'occasionPresets' ).insertPresets( occasions );
     this.set( 'occasionCollection', occasionPresets );
-  },
-
-  arrayWillChange() {
-    // required, otherwise Ember throws an error
-  },
-  arrayDidChange() {
-    this.updateOccasionCollection();
-  },
+  }.on( 'init' ),
 
   actions: {
     openOccasion(occasion) {
@@ -45,6 +33,8 @@ export default Ember.Component.extend({
       if ( occasion.get('id') ) {
         this.attrs.onDelete( occasion );
       }
+
+      this.updateOccasionCollection();
     },
 
     saveOccasions() {
