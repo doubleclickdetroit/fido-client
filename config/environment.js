@@ -1,6 +1,8 @@
 /* jshint node: true */
 
 module.exports = function(environment) {
+  var config = require( './config' ).config;
+
   var ENV = {
     modulePrefix: 'fido',
     podModulePrefix: 'fido/pods',
@@ -9,12 +11,12 @@ module.exports = function(environment) {
     locationType: 'auto',
     contentSecurityPolicy: {
       'default-src': "'none'",
-      'script-src': "'self' 'unsafe-inline' 'unsafe-eval'",
+      'script-src': "'self' 'unsafe-inline' 'unsafe-eval' https://js.stripe.com/v2/",
       'font-src': "'self'",
       'connect-src': "'self' http://localhost:3000",
       'img-src': "'self'",
       'style-src': "'self' 'unsafe-inline'",
-      'frame-src': ""
+      'frame-src': "https://js.stripe.com/"
     },
     EmberENV: {
       FEATURES: {
@@ -29,22 +31,16 @@ module.exports = function(environment) {
     }
   };
 
-  ENV['simple-auth'] = {
-    authorizer: 'simple-auth-authorizer:devise',
-    crossOriginWhitelist: ['http://localhost:3000']
-  };
-  ENV['simple-auth-devise'] = {
-    identificationAttributeName: 'email',
-    tokenAttributeName: 'token',
-    serverTokenEndpoint: 'http://localhost:3000/users/sign_in'
-  };
-
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+
+    ENV.API_URL    = config.api.url.dev;
+    ENV.STRIPE_URL = config.stripe.url.dev;
+    ENV.STRIPE_KEY = config.stripe.publishable_key.dev;
   }
 
   if (environment === 'test') {
@@ -60,8 +56,22 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
-
+    ENV.API_URL    = config.api.url.prod;
+    ENV.STRIPE_URL = config.stripe.url.prod;
+    ENV.STRIPE_KEY = config.stripe.publishable_key.prod;
   }
+
+
+  ENV['simple-auth'] = {
+    authorizer: 'simple-auth-authorizer:devise',
+    crossOriginWhitelist: [ENV.API_URL]
+  };
+  ENV['simple-auth-devise'] = {
+    identificationAttributeName: 'email',
+    tokenAttributeName: 'token',
+    serverTokenEndpoint: ENV.API_URL+'/users/sign_in'
+  };
+
 
   return ENV;
 };
