@@ -1,13 +1,28 @@
 import Ember from 'ember';
+import EmberValidations from 'ember-validations';
 import LoginControllerMixin from 'simple-auth/mixins/login-controller-mixin';
 
-export default Ember.Mixin.create(LoginControllerMixin, {
+export default Ember.Mixin.create(LoginControllerMixin, EmberValidations.Mixin, {
   identification: Ember.computed.alias( 'email' ),
+
+  validations: {
+    email: {
+      presence: true,
+      format: /.+@.+\..{2,4}/
+    },
+    password: {
+      presence: true,
+      confirmation: true
+    },
+    passwordConfirmation: {
+      presence: true
+    }
+  },
 
   actions: {
     register: function() {
       var request, credentialsHash;
-      credentialsHash = this.getProperties( 'email', 'password', 'password_confirmation' );
+      credentialsHash = this.getProperties( 'email', 'password', 'passwordConfirmation' );
 
       request = Ember.$.ajax({
         method  : 'POST',
@@ -27,7 +42,7 @@ export default Ember.Mixin.create(LoginControllerMixin, {
           this.send( 'authenticate' );
           this.setProperties({
             password: null,
-            password_confirmation: null
+            passwordConfirmation: null
           });
         }.bind( this ));
       }
