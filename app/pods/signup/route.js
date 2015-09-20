@@ -7,7 +7,7 @@ export default Ember.Route.extend({
     return this.get( 'signupService.steps' );
   },
 
-  afterModel(model, transition) {
+  redirect(model, transition) {
     let isAuthenticated = this.session.get( 'isAuthenticated' );
     this.transitionTo( isAuthenticated ? 'index' : 'signup.membership' );
   },
