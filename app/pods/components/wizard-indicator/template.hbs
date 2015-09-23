@@ -5,11 +5,11 @@
 
   <div class="pull-right">
     {{#if showPrev}}
-      <button {{action 'prev'}} disabled={{disablePrev}}>Previous</button>
+      <button {{action 'prev'}} disabled={{disablePrev}} class="btn btn-xs">Previous</button>
     {{/if}}
 
     {{#if showNext}}
-      <button {{action 'next'}} disabled={{disableNext}}>Next</button>
+      <button {{action 'next'}} disabled={{disableNext}} class="btn btn-success btn-xs">Next</button>
     {{/if}}
     </div>
 </ol>
