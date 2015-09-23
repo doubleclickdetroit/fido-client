@@ -12,7 +12,8 @@ export default Ember.Mixin.create(LoginControllerMixin, EmberValidations.Mixin, 
     },
     password: {
       presence: true,
-      confirmation: true
+      confirmation: true,
+      length: { minimum: 8 }
     },
     passwordConfirmation: {
       presence: true
