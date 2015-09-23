@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import OccasionValidatorMixin from '../mixins/occasion-validator';
 
 export default Ember.Service.extend({
   init() {
@@ -19,7 +20,9 @@ export default Ember.Service.extend({
 
     this.get( 'list' ).forEach(function(occasion) {
       if ( !occasionsCollection.findBy('label', occasion.label) ) {
-        occasionsCollection.pushObject( Ember.Object.create(occasion) );
+        occasionsCollection.pushObject(
+          Ember.Object.createWithMixins( OccasionValidatorMixin, occasion )
+        );
       }
     });
 

@@ -7,6 +7,14 @@ export default Ember.Component.extend({
   selectedOccasions       : Ember.computed.filterProperty( 'occasionCollection', 'isSelected', true ),
   withoutSelectedOccasions: Ember.computed.equal( 'selectedOccasions.length', 0 ),
 
+  occasionsAreInvalid: function() {
+    let occasions        = this.get( 'selectedOccasions' );
+    let invalidOccasions = occasions.filterBy( 'isValid', false );
+    return invalidOccasions.length > 0;
+  }.property( 'selectedOccasions.@each.isValid' ),
+
+  unreadyToSave: Ember.computed.or( 'withoutSelectedOccasions', 'occasionsAreInvalid' ),
+
   init() {
     let occasions = this.get( 'occasions' );
     this._super.apply( this, arguments );
