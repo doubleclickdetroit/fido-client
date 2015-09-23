@@ -23,7 +23,15 @@ export default Ember.Component.extend({
       });
 
       let collection = contact.get( 'occasions' );
-      collection.invoke( 'save' );
+      collection.forEach(function(occasion) {
+        // save catch if error and rollback
+        occasion.save().catch(function() {
+          occasion.transitionTo( 'loaded.saved' );
+          let payload = occasion.serialize({ includeId: true });
+          store.unloadRecord( occasion )
+          store.pushPayload( 'nestedSet', {nested_set: payload} );
+        });
+      });
       this.sendAction( 'onSaveOccasions', collection );
     },
 
