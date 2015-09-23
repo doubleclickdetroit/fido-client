@@ -1,0 +1,11 @@
+.page-contacts.content-index {
+  .table {
+    td.no-contacts {
+      padding: $grid-gutter-width;
+
+      .alert {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

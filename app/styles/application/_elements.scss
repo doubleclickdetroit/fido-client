@@ -1,0 +1,51 @@
+a.underline {
+  text-decoration: underline;
+}
+
+header {
+  @include clearfix();
+  margin-bottom: $grid-gutter-width / 2;
+}
+
+ol,
+ul {
+  &.list-horizontal {
+    @include clearfix();
+    margin-bottom: 0;
+    padding-left : 0;
+    list-style: none;
+    font-size: 0;
+
+    li {
+      position: relative;
+      margin: 0 10px;
+      font-size: $font-size-base;
+    }
+
+    @media (min-width: $screen-sm-min) {
+      white-space: nowrap;
+
+      li {
+        display: inline-block;
+
+        &:before {
+          position: absolute;
+          top : 50%;
+          left: -10px;
+          margin-top: -($font-size-base / 2);
+          width : 1px;
+          height: $font-size-base;
+          background-color: #aaa;
+          content: "";
+        }
+        &:first-child {
+          margin-left: 0;
+
+          &:before {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}

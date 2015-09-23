@@ -1,2 +1,11 @@
 @import "bootstrap";
 
+// Application
+@import "application/base";
+
+// Components
+@import "components/base";
+
+// Pages
+@import "pages/contacts/base";
+@import "pages/dashboard/base";
