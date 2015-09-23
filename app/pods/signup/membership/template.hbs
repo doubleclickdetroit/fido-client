@@ -1,7 +1,7 @@
 {{#if session.isAuthenticated}}
 
   <div class="alert alert-success" role="alert">
-    You have just registered as <strong>{{email}}</strong>
+    You have just registered as <strong>{{session.secure.email}}</strong>
   </div>
 
 {{else}}
