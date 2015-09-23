@@ -1,11 +1,16 @@
-{{#each steps as |step|}}
-<span>{{ step.step }}</span>&nbsp;
-{{/each}}
+<ol class="breadcrumb">
+  {{#each steps as |step|}}
+    <li>{{ step.step }}</li>
+  {{/each}}
 
-{{#if showPrev}}
-  <button {{action 'prev'}} disabled={{disablePrev}}>Previous</button>
-{{/if}}
+  <div class="pull-right">
+    {{#if showPrev}}
+      <button {{action 'prev'}} disabled={{disablePrev}}>Previous</button>
+    {{/if}}
 
-{{#if showNext}}
-  <button {{action 'next'}} disabled={{disableNext}}>Next</button>
-{{/if}}
+    {{#if showNext}}
+      <button {{action 'next'}} disabled={{disableNext}}>Next</button>
+    {{/if}}
+    </div>
+</ol>
+
