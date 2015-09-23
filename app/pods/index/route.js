@@ -29,11 +29,12 @@ export default Ember.Route.extend({
     };
   },
 
-  renderTemplate() {
+  renderTemplate(controller, model) {
     let isAuthenticated = this.get( 'session.isAuthenticated' );
 
     if ( isAuthenticated ) {
       this.render('dashboard', {
+        model     : model,
         controller: 'dashboard'
       });
     }
