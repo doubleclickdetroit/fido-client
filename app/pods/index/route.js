@@ -33,7 +33,9 @@ export default Ember.Route.extend({
     let isAuthenticated = this.get( 'session.isAuthenticated' );
 
     if ( isAuthenticated ) {
-      this.render( 'dashboard' );
+      this.render('dashboard', {
+        controller: 'dashboard'
+      });
     }
     else {
       this.render( 'marketing' );
