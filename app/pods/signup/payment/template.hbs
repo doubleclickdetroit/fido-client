@@ -1,5 +1,9 @@
-{{#if hasProcessedPayment}}
-  <p>Order placed successfully!</p>
-{{else}}
-  {{payment-form isDebug=true onPaymentToken='handlePaymentToken'}}
-{{/if}}
+<section class="state-payment">
+
+  {{#if hasProcessedPayment}}
+    <p>Order placed successfully!</p>
+  {{else}}
+    {{payment-form isDebug=true onPaymentToken='handlePaymentToken'}}
+  {{/if}}
+
+</section>

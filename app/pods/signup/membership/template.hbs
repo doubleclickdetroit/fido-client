@@ -1,67 +1,71 @@
-{{#if session.isAuthenticated}}
+<section class="state-membership">
 
-  <div class="alert alert-success" role="alert">
-    You have just registered as <strong>{{session.secure.email}}</strong>
-  </div>
+  {{#if session.isAuthenticated}}
 
-{{else}}
-
-  {{#if errors}}
-    <div class="alert alert-danger" role="alert">
-      Please correct the following {{pluralize errorsCollection.length 'error'}} below.
+    <div class="alert alert-success" role="alert">
+      You have just registered as <strong>{{session.secure.email}}</strong>
     </div>
+
+  {{else}}
+
+    {{#if errors}}
+      <div class="alert alert-danger" role="alert">
+        Please correct the following {{pluralize errorsCollection.length 'error'}} below.
+      </div>
+    {{/if}}
+
+    <form {{action 'register' on='submit'}}>
+      <section class="information-signin">
+        <div class="form-group has-feedback {{if errors.email 'has-error'}}">
+          <label class="control-label" for="email">Email</label>
+          {{input type="email" value=email class="form-control"}}
+          {{#if errors.email }}
+            <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+
+            <ul class="error-messages">
+              {{#each message in errors.email}}
+                <li class="help-block">{{ message }}</li>
+              {{/each}}
+            </ul>
+          {{/if}}
+        </div>
+
+        <div class="form-group has-feedback {{if errors.password 'has-error'}}">
+          <label class="control-label" for="password">Password</label>
+          {{input type="password" value=password class="form-control"}}
+          {{#if errors.password }}
+            <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+
+            <ul class="error-messages">
+              {{#each message in errors.password}}
+                <li class="help-block">{{ message }}</li>
+              {{/each}}
+            </ul>
+          {{/if}}
+        </div>
+
+        <div class="form-group has-feedback {{if errors.passwordConfirmation 'has-error'}}">
+          <label class="control-label" for="passwordConfirmation">Password Confirmation</label>
+          {{input type="password" value=passwordConfirmation class="form-control"}}
+          {{#if errors.passwordConfirmation }}
+            <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+
+            <ul class="error-messages">
+              {{#each message in errors.passwordConfirmation}}
+                <li class="help-block">{{ message }}</li>
+              {{/each}}
+            </ul>
+          {{/if}}
+        </div>
+      </section>
+
+      <hr>
+
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-block btn-lg" disabled={{ isInvalid }}>Create Your Account</button>
+      </div>
+    </form>
+
   {{/if}}
 
-  <form {{action 'register' on='submit'}}>
-    <section class="information-signin">
-      <div class="form-group has-feedback {{if errors.email 'has-error'}}">
-        <label class="control-label" for="email">Email</label>
-        {{input type="email" value=email class="form-control"}}
-        {{#if errors.email }}
-          <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-
-          <ul class="error-messages">
-            {{#each message in errors.email}}
-              <li class="help-block">{{ message }}</li>
-            {{/each}}
-          </ul>
-        {{/if}}
-      </div>
-
-      <div class="form-group has-feedback {{if errors.password 'has-error'}}">
-        <label class="control-label" for="password">Password</label>
-        {{input type="password" value=password class="form-control"}}
-        {{#if errors.password }}
-          <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-
-          <ul class="error-messages">
-            {{#each message in errors.password}}
-              <li class="help-block">{{ message }}</li>
-            {{/each}}
-          </ul>
-        {{/if}}
-      </div>
-
-      <div class="form-group has-feedback {{if errors.passwordConfirmation 'has-error'}}">
-        <label class="control-label" for="passwordConfirmation">Password Confirmation</label>
-        {{input type="password" value=passwordConfirmation class="form-control"}}
-        {{#if errors.passwordConfirmation }}
-          <span class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
-
-          <ul class="error-messages">
-            {{#each message in errors.passwordConfirmation}}
-              <li class="help-block">{{ message }}</li>
-            {{/each}}
-          </ul>
-        {{/if}}
-      </div>
-    </section>
-
-    <hr>
-
-    <div class="form-group">
-      <button type="submit" class="btn btn-primary btn-block btn-lg" disabled={{ isInvalid }}>Create Your Account</button>
-    </div>
-  </form>
-
-{{/if}}
+</section>
