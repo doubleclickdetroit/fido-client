@@ -6,10 +6,7 @@ var Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('contacts', function() {
-    this.route('new');
-    this.route('show', { path: '/:contact_id' });
-  });
+  this.route('marketing');
 
   this.route('signup', function() {
     this.route('membership');
@@ -19,8 +16,20 @@ Router.map(function() {
   });
 
   this.route('login');
-  this.route('marketing');
   this.route('dashboard');
+
+  this.route('contacts', function() {
+    this.route('new');
+    this.route('show', { path: '/:contact_id' });
+  });
+
+  this.route('settings', function() {
+    this.route('account');
+    this.route('billing');
+    this.route('profile');
+    this.route('purchase-history');
+    this.route('reminders');
+  });
 });
 
 export default Router;
