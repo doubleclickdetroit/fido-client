@@ -8,12 +8,6 @@
 
   {{else}}
 
-    {{#if errors}}
-      <div class="alert alert-danger" role="alert">
-        Please correct the following {{pluralize errorsCollection.length 'error'}} below.
-      </div>
-    {{/if}}
-
     <form {{action 'register' on='submit'}}>
       <section class="information-signin">
         <div class="form-group has-feedback {{if errors.email 'has-error'}}">

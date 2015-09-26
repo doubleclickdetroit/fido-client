@@ -1,0 +1,6 @@
+.breadcrumb {
+  li + li:before {
+    padding-right: 8px;
+    content: "/";
+  }
+}
