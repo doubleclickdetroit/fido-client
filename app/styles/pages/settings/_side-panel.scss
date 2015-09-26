@@ -1,0 +1,15 @@
+.page-settings {
+
+  .list-group {
+    .list-group-item {
+      cursor: pointer;
+
+      a {
+        &.active {
+          color: #fff;
+        }
+      }
+    }
+  }
+
+}

@@ -1,0 +1,13 @@
+@import "content";
+@import "side-panel";
+
+.page-settings {
+  @include make-row();
+
+  .side-panel {
+    @include make-md-column(3);
+  }
+  .content {
+    @include make-md-column(9);
+  }
+}

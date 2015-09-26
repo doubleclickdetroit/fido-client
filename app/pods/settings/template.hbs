@@ -2,11 +2,21 @@
 
   <section class="side-panel">
     <ul class="list-group">
-      <li class="list-group-item">{{link-to 'My Account' 'settings.account'}}</li>
-      <li class="list-group-item">{{link-to 'Profile' 'settings.profile'}}</li>
-      <li class="list-group-item">{{link-to 'Reminders' 'settings.reminders'}}</li>
-      <li class="list-group-item">{{link-to 'Billing' 'settings.billing'}}</li>
-      <li class="list-group-item">{{link-to 'Purchase History' 'settings.purchase-history'}}</li>
+      {{#link-to 'settings.account' tagName="li" class="list-group-item"}}
+        {{link-to 'My Account' 'settings.account'}}
+      {{/link-to}}
+
+      {{#link-to 'settings.personal' tagName="li" class="list-group-item"}}
+        {{link-to 'Personal Settings' 'settings.personal'}}
+      {{/link-to}}
+
+      {{#link-to 'settings.billing' tagName="li" class="list-group-item"}}
+        {{link-to 'Billing' 'settings.billing'}}
+      {{/link-to}}
+
+      {{#link-to 'settings.purchase-history' tagName="li" class="list-group-item"}}
+        {{link-to 'Purchase History' 'settings.purchase-history'}}
+      {{/link-to}}
     </ul>
   </section>
 

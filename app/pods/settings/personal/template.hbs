@@ -1,0 +1,47 @@
+<section class="state-personal">
+
+  <div class="account-details">
+    <div class="row">
+      <div class="title">Contact</div>
+      <div class="description">
+        <div class="form-group">
+          <label for="field-first-name">First Name</label>
+          {{input class="form-control" id="field-first-name" placeholder="First Name"}}
+        </div>
+
+        <div class="form-group">
+          <label for="field-last-name">Last Name</label>
+          {{input class="form-control" id="field-last-name" placeholder="Last Name"}}
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="title">Emails</div>
+      <div class="description">
+        <p>I am interested in the following types of emails from Fido:</p>
+        <div class="checkbox">
+          <label>
+            {{input type="checkbox" name="option1" checked=option1}}
+            Option One
+          </label>
+        </div>
+
+        <div class="checkbox">
+          <label>
+            {{input type="checkbox" name="option2" checked=option2}}
+            Option Two
+          </label>
+        </div>
+
+        <div class="checkbox">
+          <label>
+            {{input type="checkbox" name="option3" checked=option3}}
+            Option Three
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>

@@ -1,0 +1,29 @@
+.page-settings {
+
+  .account-details {
+    @include make-md-column(12);
+
+    .row {
+      padding-top   : $grid-gutter-width / 2;
+      padding-bottom: $grid-gutter-width / 2;
+
+      &:not(:first-of-type) {
+        border-top: 1px solid #eee;
+      }
+
+      .title {
+        @include make-md-column(3);
+      }
+
+      .description {
+        @include make-md-column(9);
+
+        hr {
+          margin-top   : $grid-gutter-width / 2;
+          margin-bottom: $grid-gutter-width / 2;
+        }
+      }
+    }
+  }
+
+}

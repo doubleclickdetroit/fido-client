@@ -26,7 +26,7 @@ Router.map(function() {
   this.route('settings', function() {
     this.route('account');
     this.route('billing');
-    this.route('profile');
+    this.route('personal');
     this.route('purchase-history');
     this.route('reminders');
   });
