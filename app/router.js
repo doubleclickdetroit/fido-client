@@ -24,11 +24,15 @@ Router.map(function() {
   });
 
   this.route('settings', function() {
-    this.route('account');
-    this.route('billing');
-    this.route('personal');
-    this.route('purchase-history');
-    this.route('reminders');
+    this.route('account', function() {
+      this.route('edit');
+      this.route('password');
+    });
+    this.route('billing', function() {
+      this.route('edit');
+    });
+    this.route('notifications');
+    this.route('receipts');
   });
 });
 

@@ -1,28 +1,5 @@
 <section class="state-billing">
 
-  <div class="well">
-    <h2>Subscription Details</h2>
-    &lt;subscription details here&gt;
-  </div>
-
-  <div class="account-details">
-    <div class="row">
-      <div class="title">Payment Method</div>
-      <div class="description">
-        &lt;card details here&gt;
-        <hr>
-        <a href="#" {{action 'updateCard'}}>Change Card</a>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="title">Mailing Address</div>
-      <div class="description">
-        &lt;address here&gt;
-        <hr>
-        <a href="#" {{action 'updateAddress'}}>Change Address</a>
-      </div>
-    </div>
-  </div>
+  {{outlet}}
 
 </section>

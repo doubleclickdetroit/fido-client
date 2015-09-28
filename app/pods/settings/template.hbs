@@ -1,27 +1,27 @@
 <article class="page-settings">
 
-  <section class="side-panel">
-    <ul class="list-group">
-      {{#link-to 'settings.account' tagName="li" class="list-group-item"}}
-        {{link-to 'My Account' 'settings.account'}}
-      {{/link-to}}
-
-      {{#link-to 'settings.personal' tagName="li" class="list-group-item"}}
-        {{link-to 'Personal Settings' 'settings.personal'}}
-      {{/link-to}}
-
-      {{#link-to 'settings.billing' tagName="li" class="list-group-item"}}
-        {{link-to 'Billing' 'settings.billing'}}
-      {{/link-to}}
-
-      {{#link-to 'settings.purchase-history' tagName="li" class="list-group-item"}}
-        {{link-to 'Purchase History' 'settings.purchase-history'}}
-      {{/link-to}}
-    </ul>
-  </section>
-
   <section class="content">
     {{outlet}}
   </section>
+
+  <aside class="side-panel">
+    <ul class="list-group">
+      {{#link-to 'settings.account' tagName="li" class="list-group-item"}}
+        {{link-to 'Account Info' 'settings.account'}}
+      {{/link-to}}
+
+      {{#link-to 'settings.billing' tagName="li" class="list-group-item"}}
+        {{link-to 'Subscription' 'settings.billing'}}
+      {{/link-to}}
+
+      {{#link-to 'settings.receipts' tagName="li" class="list-group-item"}}
+        {{link-to 'Billing History' 'settings.receipts'}}
+      {{/link-to}}
+
+      {{#link-to 'settings.notifications' tagName="li" class="list-group-item"}}
+        {{link-to 'Notifications' 'settings.notifications'}}
+      {{/link-to}}
+    </ul>
+  </aside>
 
 </article>

@@ -1,0 +1,31 @@
+<section class="state-edit">
+
+  {{#link-to 'settings.account.index' class="btn btn-link"}}
+    <span aria-hidden="true">&larr;</span> Account Info
+  {{/link-to}}
+
+  <div class="account-details">
+    <div class="row">
+      <div class="title">First Name</div>
+      <div class="description">
+        <div class="form-group">
+          {{input class="form-control" id="field-first-name"}}
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="title">Last Name</div>
+      <div class="description">
+        <div class="form-group">
+          {{input class="form-control" id="field-last-name"}}
+        </div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button class="btn btn-primary">Save Changes</button>
+    </div>
+  </div>
+
+</section>

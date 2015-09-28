@@ -1,15 +1,5 @@
 <section class="state-new">
 
-  <nav>
-    <ul class="pager">
-      <li class="previous">
-        {{#link-to 'contacts.index'}}
-          <span aria-hidden="true">&larr;</span> Back
-        {{/link-to}}
-      </li>
-    </ul>
-  </nav>
-
   {{contact-manager contact=model occasions=model.occasions onSaveContact='saveContact' onSaveOccasions='saveOccasions' onDeleteOccasion='deleteOccasion'}}
 
 </section>
