@@ -29,10 +29,10 @@ Router.map(function() {
       this.route('password');
     });
     this.route('billing', function() {
-      this.route('edit');
+      this.route('add');
     });
     this.route('notifications');
-    this.route('receipts');
+    this.route('invoices', function() {});
   });
 });
 

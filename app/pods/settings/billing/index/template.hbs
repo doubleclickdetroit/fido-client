@@ -2,25 +2,21 @@
 
   <div class="well">
     <h2>Subscription Details</h2>
-    &lt;subscription details here&gt;
+    <p>
+      Your account will be billed
+      <strong>{{format-currency model.subscription.price}}</strong>
+      on
+      <strong>{{moment-format model.subscription.nextBillingDate 'LL'}}</strong>
+    </p>
   </div>
 
   <div class="account-details">
     <div class="row">
       <div class="title">Payment Method</div>
       <div class="description">
-        &lt;card details here&gt;
+        {{credit-cards-list cards=model.cards}}
         <hr>
-        <a href="#" {{action 'updateCard'}}>Change Card</a>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="title">Mailing Address</div>
-      <div class="description">
-        &lt;address here&gt;
-        <hr>
-        <a href="#" {{action 'updateAddress'}}>Change Address</a>
+        {{link-to 'Add Card' 'settings.billing.add' class="btn btn-primary"}}
       </div>
     </div>
   </div>

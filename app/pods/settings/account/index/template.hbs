@@ -4,21 +4,21 @@
     <div class="row">
       <div class="title">First Name</div>
       <div class="description">
-        &lt;first name here&gt;
+        {{ model.first_name }}
       </div>
     </div>
 
     <div class="row">
       <div class="title">Last Name</div>
       <div class="description">
-        &lt;last name here&gt;
+        {{ model.last_name }}
       </div>
     </div>
 
     <div class="row">
       <div class="title">Email Address</div>
       <div class="description">
-        &lt;email address here&gt;
+        {{ model.email }}
       </div>
     </div>
 
@@ -32,7 +32,7 @@
     <div class="row">
       <div class="title">Member Since</div>
       <div class="description">
-        &lt;membership date here&gt;
+        {{moment-format model.created_at 'LL'}}
       </div>
     </div>
 

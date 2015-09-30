@@ -5,18 +5,18 @@
       <tr>
         <th>Date</th>
         <th>Item</th>
-        <th>Method</th>
         <th>Total</th>
       </tr>
     </thead>
 
     <tbody>
-      <tr>
-        <td>&lt;date&gt;</td>
-        <td>&lt;description&gt;</td>
-        <td>&lt;credit card&gt;</td>
-        <td>&lt;total&gt;</td>
-      </tr>
+      {{#each model as |invoice|}}
+        <tr>
+          <td>{{moment-format invoice.date 'LL'}}</td>
+          <td>Fido Subscription</td>
+          <td>{{format-currency invoice.total}}</td>
+        </tr>
+      {{/each}}
     </tbody>
   </table>
 

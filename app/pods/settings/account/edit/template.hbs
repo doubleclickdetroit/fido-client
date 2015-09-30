@@ -9,7 +9,7 @@
       <div class="title">First Name</div>
       <div class="description">
         <div class="form-group">
-          {{input class="form-control" id="field-first-name"}}
+          {{input class="form-control" id="field-first-name" value=model.first_name}}
         </div>
       </div>
     </div>
@@ -18,13 +18,22 @@
       <div class="title">Last Name</div>
       <div class="description">
         <div class="form-group">
-          {{input class="form-control" id="field-last-name"}}
+          {{input class="form-control" id="field-last-name" value=model.last_name}}
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="title">Current Password</div>
+      <div class="description">
+        <div class="form-group">
+          {{input type="password" class="form-control" id="field-current-password" value=model.current_password}}
         </div>
       </div>
     </div>
 
     <div class="controls">
-      <button class="btn btn-primary">Save Changes</button>
+      <button class="btn btn-primary" {{action 'updateUser'}}>Save Changes</button>
     </div>
   </div>
 

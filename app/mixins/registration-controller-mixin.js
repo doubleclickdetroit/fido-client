@@ -2,35 +2,78 @@ import Ember from 'ember';
 import _ from 'lodash/lodash';
 
 export default Ember.Mixin.create({
-  makeRegistrationRequest(options={}) {
-    let settings = _.extend({
-      method  : 'POST',
-      dataType: 'json',
-      url: 'http://localhost:3000/users'
-    }, options);
+  buildRequest() {
+    return {
+      dataType:'json',
+      url     : 'http://localhost:3000/users'
+    };
+  },
 
+  makeRegistrationRequest(options={}) {
+    let settings = _.extend( this.buildRequest(), options );
     return Ember.$.ajax( settings );
+  },
+
+  registerUser(credentialsHash={}) {
+    let request = this.makeRegistrationRequest({
+      method: 'POST',
+      data: {
+        user: credentialsHash
+      }
+    })
+    .then(
+      this.handleRegistrationCreateSuccess.bind( this ),
+      this.handleRegistrationCreateFailure.bind( this )
+    );
+
+    return request;
   },
 
   handleRegistrationCreateSuccess() {},
   handleRegistrationCreateFailure() {},
 
+  getCurrentUser() {
+    let request = this.makeRegistrationRequest({
+      method: 'GET'
+    })
+    .then(
+      this.handleRegistrationGetSuccess.bind( this ),
+      this.handleRegistrationGetFailure.bind( this )
+    );
+
+    return request;
+  },
+
+  handleRegistrationGetSuccess(response) {
+    return Ember.Object.create( response.user );
+  },
+  handleRegistrationGetFailure() {},
+
+  updateUser(userData) {
+    let request = this.makeRegistrationRequest({
+      method: 'PUT',
+      data: {
+        user: userData
+      }
+    })
+    .then(
+      this.handleRegistrationUpdateSuccess.bind( this ),
+      this.handleRegistrationUpdateFailure.bind( this )
+    );
+  },
+
+  handleRegistrationUpdateSuccess() {},
+  handleRegistrationUpdateFailure() {},
+
   actions: {
     register() {
-      let request, credentialsHash;
-      credentialsHash = this.getProperties( 'email', 'password', 'passwordConfirmation' );
+      let credentialsHash = this.getProperties( 'email', 'password', 'passwordConfirmation' );
+      return this.registerUser( credentialsHash );
+    },
 
-      request = this.makeRegistrationRequest({
-        data: {
-          user: credentialsHash
-        }
-      })
-      .then(
-        this.handleRegistrationCreateSuccess.bind( this ),
-        this.handleRegistrationCreateFailure.bind( this )
-      );
-
-      return request;
+    updateUser() {
+      let userData = this.controller.model.getProperties( 'first_name', 'last_name', 'current_password' );
+      return this.updateUser( userData );
     }
   }
 

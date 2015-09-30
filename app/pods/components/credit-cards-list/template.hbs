@@ -1,0 +1,15 @@
+{{#each cards as |card|}}
+  <li>
+    <div class="col-md-4">
+    {{ card.brand }}
+    </div>
+
+    <div class="col-md-4">
+    {{ card.last4 }}
+    </div>
+
+    <div class="col-md-4">
+    {{ card.expMonth }} / {{ card.expYear }}
+    </div>
+  </li>
+{{/each}}
