@@ -6,7 +6,7 @@
       Your account will be billed
       <strong>{{format-currency model.subscription.price}}</strong>
       on
-      <strong>{{moment-format model.subscription.nextBillingDate 'LL'}}</strong>
+      <strong>{{moment-format model.subscription.currentPeriodEnd 'LL'}}</strong>
     </p>
   </div>
 
