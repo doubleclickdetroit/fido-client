@@ -13,10 +13,6 @@ export default Ember.Route.extend(WizardStepSignupMixin, {
     controller.set( 'contacts', contacts );
   },
 
-  renderTemplate() {
-    this.render( 'contacts.new' );
-  },
-
   actions: {
     willTransition() {
       let contact = this.controller.model;

@@ -1,5 +1,9 @@
 <section class="state-new">
 
+  {{#link-to 'contacts' class="btn btn-link"}}
+    <span aria-hidden="true">&larr;</span> Contacts
+  {{/link-to}}
+
   {{contact-manager contact=model occasions=model.occasions onSaveContact='saveContact' onSaveOccasions='saveOccasions' onDeleteOccasion='deleteOccasion'}}
 
 </section>

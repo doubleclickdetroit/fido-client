@@ -1,14 +1,8 @@
 <section class="state-show">
 
-  <nav>
-    <ul class="pager">
-      <li class="previous">
-        {{#link-to 'contacts.index'}}
-          <span aria-hidden="true">&larr;</span> Back
-        {{/link-to}}
-      </li>
-    </ul>
-  </nav>
+  {{#link-to 'contacts' class="btn btn-link"}}
+    <span aria-hidden="true">&larr;</span> Contacts
+  {{/link-to}}
 
   {{contact-manager contact=model occasions=model.occasions onSaveContact='saveContact' onSaveOccasions='saveOccasions' onDeleteOccasion='deleteOccasion'}}
 
