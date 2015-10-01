@@ -43,6 +43,18 @@ module.exports = function(environment) {
     ENV.STRIPE_KEY = config.stripe.publishable_key.dev;
   }
 
+  if (environment === 'staging') {
+    // ENV.APP.LOG_RESOLVER = true;
+    // ENV.APP.LOG_ACTIVE_GENERATION = true;
+    // ENV.APP.LOG_TRANSITIONS = true;
+    // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
+    // ENV.APP.LOG_VIEW_LOOKUPS = true;
+
+    ENV.API_URL    = config.api.url.staging;
+    ENV.STRIPE_URL = config.stripe.url.staging;
+    ENV.STRIPE_KEY = config.stripe.publishable_key.staging;
+  }
+
   if (environment === 'test') {
     // Testem prefers this...
     ENV.baseURL = '/';
