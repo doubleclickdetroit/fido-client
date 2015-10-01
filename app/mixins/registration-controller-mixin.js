@@ -1,11 +1,12 @@
 import Ember from 'ember';
 import _ from 'lodash/lodash';
+import ENV from 'fido/config/environment';
 
 export default Ember.Mixin.create({
   buildRequest() {
     return {
-      dataType:'json',
-      url     : 'http://localhost:3000/users'
+      dataType: 'json',
+      url     : `${ENV.API_URL}/users`
     };
   },
 
