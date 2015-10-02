@@ -1,7 +1,9 @@
 <section class="state-payment">
 
   {{#if hasProcessedPayment}}
-    <p>Order placed successfully!</p>
+    <div class="alert alert-success" role="alert">
+      <p>Order placed successfully!</p>
+    </div>
   {{else}}
     {{payment-form isDebug=true canResubmit=hasSubscriptionErrors onPaymentToken='handlePaymentToken'}}
   {{/if}}
