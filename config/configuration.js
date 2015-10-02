@@ -3,8 +3,8 @@ exports.config = {
   api: {
     url: {
       dev    : 'http://localhost:3000',
-      staging: 'https://gogetitfido-api-staging.herokuapp.com/',
-      prod   : 'https://gogetitfido-api-staging.herokuapp.com/'
+      staging: 'https://gogetitfido-api-staging.herokuapp.com',
+      prod   : 'https://gogetitfido-api-staging.herokuapp.com'
     }
   },
 
