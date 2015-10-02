@@ -30,6 +30,13 @@ export default Ember.Component.extend({
     });
   },
 
+  canResubmitDidChange: function() {
+    let canResubmit = this.get( 'canResubmit' );
+    if ( canResubmit ) {
+      this.set( 'isProcessing', false );
+    }
+  }.observes( 'canResubmit' ),
+
   actions: {
     submit() {
       this.set( 'error', null );

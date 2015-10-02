@@ -3,7 +3,7 @@
   {{#if hasProcessedPayment}}
     <p>Order placed successfully!</p>
   {{else}}
-    {{payment-form isDebug=true onPaymentToken='handlePaymentToken'}}
+    {{payment-form isDebug=true canResubmit=hasSubscriptionErrors onPaymentToken='handlePaymentToken'}}
   {{/if}}
 
 </section>

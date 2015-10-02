@@ -7,10 +7,17 @@ export default Ember.Route.extend(WizardStepSignupMixin, {
       // create the subscription
       let subscription = this.store.createRecord('subscription', { stripeToken: token });
 
+      // set hasSubscriptionErrors to false
+      this.set( 'controller.hasSubscriptionErrors', false );
+
       // create subscription, then update controller payment has processed
-      subscription.save().then(function() {
-        this.set( 'controller.hasProcessedPayment', true );
-      }.bind(this));
+      subscription.save()
+        .then(function() {
+          this.set( 'controller.hasProcessedPayment', true );
+        }.bind(this))
+        .fail(function() {
+          this.set( 'controller.hasSubscriptionErrors', true );
+        }.bind(this));
     }
   }
 });
