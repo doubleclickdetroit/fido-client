@@ -1,7 +1,7 @@
 /* jshint node: true */
 
 module.exports = function(environment) {
-  var config = require( './config' ).config;
+  var config = require( './configuration' ).config;
 
   var ENV = {
     modulePrefix: 'fido',
