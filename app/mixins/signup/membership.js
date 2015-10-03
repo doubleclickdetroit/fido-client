@@ -22,13 +22,7 @@ export default Ember.Mixin.create(RegistrationControllerMixin, LoginControllerMi
   },
 
   handleRegistrationCreateSuccess(response) {
-    Ember.run(function() {
-      this.send( 'authenticate' );
-      this.setProperties({
-        password: null,
-        passwordConfirmation: null
-      });
-    }.bind( this ));
+    this.send( 'authenticate' );
   },
 
   handleRegistrationCreateFailure(xhr) {
