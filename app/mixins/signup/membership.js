@@ -1,9 +1,9 @@
 import Ember from 'ember';
-import EmberValidations from 'ember-validations';
+import LazyValidations from '../ember-lazy-validations';
 import LoginControllerMixin from 'simple-auth/mixins/login-controller-mixin';
 import RegistrationControllerMixin from '../registration-controller-mixin';
 
-export default Ember.Mixin.create(RegistrationControllerMixin, LoginControllerMixin, EmberValidations.Mixin, {
+export default Ember.Mixin.create(RegistrationControllerMixin, LoginControllerMixin, LazyValidations, {
   identification: Ember.computed.alias( 'email' ),
 
   validations: {
@@ -34,8 +34,12 @@ export default Ember.Mixin.create(RegistrationControllerMixin, LoginControllerMi
 
   actions: {
     register: function() {
-      let request = this._super.apply( this, arguments );
-      return request;
+      this.validate().catch( Ember.K );
+
+      let isValid = this.get( 'isValid' );
+      if ( isValid ) {
+        this._super.apply( this, arguments );
+      }
     }
   }
 
