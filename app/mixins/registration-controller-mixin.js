@@ -15,6 +15,11 @@ export default Ember.Mixin.create({
     return Ember.$.ajax( settings );
   },
 
+  /**
+   * Register User
+   * @param  {object} credentialsHash user credentials
+   * @return {promise}
+   */
   registerUser(credentialsHash={}) {
     let request = this.makeRegistrationRequest({
       method: 'POST',
@@ -33,6 +38,10 @@ export default Ember.Mixin.create({
   handleRegistrationCreateSuccess() {},
   handleRegistrationCreateFailure() {},
 
+  /**
+   * Get Current User
+   * @return {promise}
+   */
   getCurrentUser() {
     let request = this.makeRegistrationRequest({
       method: 'GET'
@@ -50,6 +59,11 @@ export default Ember.Mixin.create({
   },
   handleRegistrationGetFailure() {},
 
+  /**
+   * Update User
+   * @param  {object} userData user credentials
+   * @return {promise}
+   */
   updateUser(userData) {
     let request = this.makeRegistrationRequest({
       method: 'PUT',
@@ -64,18 +78,6 @@ export default Ember.Mixin.create({
   },
 
   handleRegistrationUpdateSuccess() {},
-  handleRegistrationUpdateFailure() {},
-
-  actions: {
-    register() {
-      let credentialsHash = this.getProperties( 'email', 'password', 'passwordConfirmation' );
-      return this.registerUser( credentialsHash );
-    },
-
-    updateUser() {
-      let userData = this.controller.model.getProperties( 'first_name', 'last_name', 'current_password' );
-      return this.updateUser( userData );
-    }
-  }
+  handleRegistrationUpdateFailure() {}
 
 });
