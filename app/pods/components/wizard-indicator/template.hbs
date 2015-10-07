@@ -1,6 +1,12 @@
 <ol class="breadcrumb">
   {{#each steps as |step|}}
-    <li>{{ step.step }}</li>
+    <li class="{{if step.isActive 'active'}}">
+      {{#if step.isComplete}}
+        {{link-to step.step step.route}}
+      {{else}}
+        {{ step.step }}
+      {{/if}}
+    </li>
   {{/each}}
 
   <div class="pull-right">

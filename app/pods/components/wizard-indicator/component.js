@@ -3,12 +3,30 @@ import Ember from 'ember';
 export default Ember.Component.extend({
   currentPath: Ember.computed.alias( 'applicationController.currentPath' ),
 
-  activeStep : Ember.computed('steps', 'currentPath', function() {
+  activeStep: Ember.computed('steps', 'currentPath', function() {
     let steps       = this.get( 'steps' );
     let currentPath = this.get( 'currentPath' );
 
     return steps.filterBy( 'route', currentPath ).get( 'firstObject' );
   }),
+
+  activeStepDidChange: Ember.observer('activeStep', function() {
+    let steps       = this.get( 'steps' );
+    let activeRoute = this.get( 'activeStep.route' );
+
+    let currentStep  = steps.filterBy( 'isActive', true ).get( 'firstObject' );
+    if ( currentStep ) {
+      currentStep.set( 'isActive', false );
+    }
+
+    let activeStep = steps.filterBy( 'route', activeRoute ).get( 'firstObject' );
+    activeStep.set( 'isActive', true );
+
+    let activeIndex = steps.indexOf( activeStep );
+    let previousSteps = steps.find(function(step, i) {
+      step.set( 'isComplete', i < activeIndex );
+    });
+  }).on('init'),
 
   nextButton    : Ember.computed.alias( 'activeStep.next' ),
   prevButton    : Ember.computed.alias( 'activeStep.prev' ),
