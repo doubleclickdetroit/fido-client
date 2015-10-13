@@ -20,12 +20,14 @@ export default Ember.Component.extend({
     }
 
     let activeStep = steps.filterBy( 'route', activeRoute ).get( 'firstObject' );
-    activeStep.set( 'isActive', true );
+    if ( activeStep ) {
+      activeStep.set( 'isActive', true );
 
-    let activeIndex = steps.indexOf( activeStep );
-    let previousSteps = steps.find(function(step, i) {
-      step.set( 'isComplete', i < activeIndex );
-    });
+      let activeIndex = steps.indexOf( activeStep );
+      let previousSteps = steps.find(function(step, i) {
+        step.set( 'isComplete', i < activeIndex );
+      });
+    }
   }).on('init'),
 
   nextButton    : Ember.computed.alias( 'activeStep.next' ),

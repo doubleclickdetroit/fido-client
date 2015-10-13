@@ -4,12 +4,34 @@ export default Ember.Route.extend({
   signupService: Ember.inject.service( 'signup' ),
 
   model() {
-    return this.get( 'signupService.steps' );
+    let steps    = this.get( 'signupService.steps' );
+    let contacts = this.store.findAll( 'contact' ).catch(function() {
+      return [];
+    });
+
+    return Ember.RSVP.hash({
+      steps   : steps,
+      contacts: contacts
+    });
   },
 
   redirect(model, transition) {
-    let isAuthenticated = this.session.get( 'isAuthenticated' );
-    this.transitionTo( isAuthenticated ? 'signup.payment' : 'signup.membership' );
+    let notAuthenticated = !this.session.get( 'isAuthenticated' );
+    let withoutPayment   = !this.session.get( 'isActivated' );
+    let withoutContacts  = model.contacts.get( 'length' ) < 1;
+
+    if ( notAuthenticated ) {
+      this.transitionTo( 'signup.membership' );
+    }
+    else if ( withoutContacts ) {
+      this.transitionTo( 'signup.contacts' );
+    }
+    else if ( withoutPayment ) {
+      this.transitionTo( 'signup.payment' );
+    }
+    else {
+      this.transitionTo( 'index' );
+    }
   },
 
   actions: {
@@ -18,6 +40,10 @@ export default Ember.Route.extend({
     },
     nextRoute(route) {
       this.transitionTo( route );
+    },
+
+    accountIsActivated(isActivated) {
+      this.session.accountIsActivated( isActivated );
     }
   }
 });

@@ -8,9 +8,8 @@ export default Ember.Route.extend(WizardStepSignupMixin, {
 
   setupController(controller, model) {
     this._super.apply( this, arguments );
-
-    let contacts = this.store.peekAll( 'contact' );
-    controller.set( 'contacts', contacts );
+    let signup = this.modelFor( 'signup' );
+    controller.set( 'contacts', signup.contacts );
   },
 
   actions: {

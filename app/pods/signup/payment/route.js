@@ -9,7 +9,10 @@ export default Ember.Route.extend(WizardStepSignupMixin, {
       let data = { subscription: { stripe_token: token } };
 
       Ember.$.post( url, data )
-        .then(() => this.set( 'controller.hasProcessedPayment', true ))
+        .then(() => {
+          this.send( 'accountIsActivated', true );
+          this.set( 'controller.hasProcessedPayment', true );
+        })
         .fail(() => this.set( 'controller.hasSubscriptionErrors', true ));
     }
   }
